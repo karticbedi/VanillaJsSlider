@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<title>My Slide</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style.css">
+<body>
+
+<div class="container">
+  <h2>My Custom JavaScript Slider</h2>
+  
+</div>
+
+<div class="content display_box" style="max-width:800px">
+  <img class="slides animate_slide" src="img/1.png" style="width:100%">
+  <img class="slides animate_slide" src="img/2.png" style="width:100%">
+  <img class="slides animate_slide" src="img/3.png" style="width:100%">
+  <img class="slides animate_slide" src="img/4.png" style="width:100%">
+  <div class="control_panel container" style="width:100%">
+    <div class="left_arrow " onclick="nextSlide(-1)">&#10094;</div>
+    <div class="right_arrow" onclick="nextSlide(1)">&#10095;</div>
+    <span class="badge slide_demo" onclick="currentSlide(1)"></span>
+    <span class="badge slide_demo" onclick="currentSlide(2)"></span>
+    <span class="badge slide_demo" onclick="currentSlide(3)"></span>
+    <span class="badge slide_demo" onclick="currentSlide(4)"></span>
+  </div>
+</div>
+
+<script>
+var slideCount = 1;
+moveSlider(slideCount);
+
+function nextSlide(n) {
+  moveSlider(slideCount += n);
+}
+
+function currentSlide(n) {
+  moveSlider(slideCount = n);
+}
+
+function moveSlider(n) {
+  var i;
+  var x = document.getElementsByClassName("slides");
+  var dots = document.getElementsByClassName("slide_demo");
+  if (n > x.length) {slideCount = 1}    
+  if (n < 1) {slideCount = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace(" active_dot", "");
+  }
+  x[slideCount-1].style.display = "block";  
+  dots[slideCount-1].className += " active_dot";
+}
+</script>
+
+</body>
+</html> 
